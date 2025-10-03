@@ -5,14 +5,14 @@
 1. Connect to the ETH network, either by using the on-side wifi/Ethernet or by using a VPN
 2. Start a terminal
 3. Use ssh command to connect to the login node of Euler: `ssh username@euler.ethz.ch`, use your regular ETH password to connect
-4. First use only: clone SkelePlex-V2 to your working directory (e.g., /cluster/home/username/), you might have to add an SHH key for this step, follow tutorial on:[add SHH key GitHub](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
+4. First use only: clone SkelePlex-V2 to your working directory (e.g., /cluster/home/username/), you might have to add an SHH key for this step, follow tutorial on: [add SHH key GitHub](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
 5. cd into the folder where SkelePlex-V2 is installed 
 6. Create a new virtual environment using these commands:
     1. Load module stack with pre-installed packages: `module load stack/2024-06 python_cuda/3.11.6`
     2. Create new virtual environment called skeleplexenv: `python -m venv --system-site-packages skeleplexenv`
     3. Activate your new virtual environment called skeleplexenv: `source skeleplexenv/bin/activate`
-    4. Install skeleplex into that virtual environment:`pip install -e ".[dev-all]"`
-    5. Install cuda into that virtual environment:`pip install cupy-cuda12x`
+    4. Install skeleplex into that virtual environment: `pip install -e ".[dev-all]"`
+    5. Install cuda into that virtual environment: `pip install cupy-cuda12x`
 
 
 
@@ -26,8 +26,8 @@ This is how to upload a file to a specific folder on Euler, for large .zarr file
 ## Write and Run the Job Script on Euler
 - Create a new file containing your skeleplex job: `nano skeleplex_job.sh`
 - Write the Job Script, set the requirements according to your needs, use the [HPC - Slurm Submission Line Advisor](https://docs.hpc.ethz.ch/services/slurm-submission-line-advisor/) for the set-up. See an example below:
-
-    ```#!/bin/bash
+    ```
+    #!/bin/bash
 
     #SBATCH --job-name=skeleplex_job
     #SBATCH --time=04:00:00
@@ -39,7 +39,8 @@ This is how to upload a file to a specific folder on Euler, for large .zarr file
 
     python skeleplex_job.py --workers 1
 
-    echo "Job completed: $(date)"```
+    echo "Job completed: $(date)"
+    ```
 
 - Save the file (`Ctrl+X`, then `Y`, then `Enter` in nano).
 - To ensure that SkelePlex can be accessed run the following command before submitting your job: `module load eth_proxy`
